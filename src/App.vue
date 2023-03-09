@@ -1,9 +1,11 @@
 <script setup></script>
 
 <template>
-  <RouterLink to="/"> Notes</RouterLink> |
-  <RouterLink to="stats">Stats</RouterLink>
+  <RouterLink class="button" to="/"> Notes</RouterLink> |
+  <RouterLink class="button" to="stats">Stats</RouterLink>
   <RouterView></RouterView>
 </template>
 
-<style scoped></style>
+<style>
+@import 'bulma/css/bulma.min.css';
+</style>
