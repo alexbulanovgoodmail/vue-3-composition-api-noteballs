@@ -1,9 +1,15 @@
-<script setup></script>
+<script setup>
+/* imports */
+import NavBar from '@/components/Layout/NavBar.vue'
+</script>
 
 <template>
-  <RouterLink to="/"> Notes</RouterLink> |
-  <RouterLink to="stats">Stats</RouterLink>
-  <RouterView></RouterView>
+  <NavBar />
+  <div class="container is-max-desktop px-2 py-4">
+    <RouterView></RouterView>
+  </div>
 </template>
 
-<style scoped></style>
+<style>
+@import 'bulma/css/bulma.min.css';
+</style>
