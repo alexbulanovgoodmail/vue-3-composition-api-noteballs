@@ -6,7 +6,7 @@ import ViewStats from '@/views/ViewStats.vue'
 
 import App from './App.vue'
 
-import './assets/main.css'
+// import './assets/main.css'
 
 const router = createRouter({
   history: createWebHashHistory(),
