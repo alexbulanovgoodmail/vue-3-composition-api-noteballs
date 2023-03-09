@@ -5,9 +5,9 @@ import NavBar from '@/components/Layout/NavBar.vue'
 
 <template>
   <NavBar />
-  <!-- <RouterLink class="button" to="/"> Notes</RouterLink> |
-  <RouterLink class="button" to="stats">Stats</RouterLink> -->
-  <RouterView></RouterView>
+  <div class="container is-max-desktop px-2 py-4">
+    <RouterView></RouterView>
+  </div>
 </template>
 
 <style>
