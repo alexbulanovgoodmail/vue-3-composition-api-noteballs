@@ -1,5 +1,9 @@
 <script setup>
 import { ref } from 'vue'
+import Note from '@/components/Notes/Note.vue'
+
+const newNote = ref('')
+const newNoteRef = ref(null)
 
 const notes = ref([
   {
@@ -12,6 +16,20 @@ const notes = ref([
     content: 'This is a shorter note! Woo!'
   }
 ])
+
+function addNote() {
+  let currentNew = new Date().getTime()
+  let id = currentNew.toString()
+
+  let note = {
+    id,
+    content: newNote.value
+  }
+
+  notes.value.unshift(note)
+  newNote.value = ''
+  newNoteRef.value.focus()
+}
 </script>
 
 <template>
@@ -19,28 +37,29 @@ const notes = ref([
     <div class="card has-background-success-dark mb-5 p-4">
       <div class="field">
         <div class="control">
-          <textarea class="textarea" placeholder="Add new note"></textarea>
+          <textarea
+            ref="newNoteRef"
+            v-model="newNote"
+            class="textarea"
+            placeholder="Add new note"
+          ></textarea>
         </div>
       </div>
 
       <div class="field is-grouped is-grouped-right">
         <div class="control">
-          <button class="button is-link has-background-success">Add New Note</button>
+          <button
+            class="button is-link has-background-success"
+            :disabled="!newNote"
+            @click="addNote"
+          >
+            Add New Note
+          </button>
         </div>
       </div>
     </div>
 
-    <div v-for="note in notes" :key="note.id" class="card mb-4">
-      <div class="card-content">
-        <div class="content">
-          {{ note.content }}
-        </div>
-      </div>
-      <footer class="card-footer">
-        <a href="#" class="card-footer-item">Edit</a>
-        <a href="#" class="card-footer-item">Delete</a>
-      </footer>
-    </div>
+    <Note v-for="note in notes" :key="note.id" />
   </div>
 </template>
 
