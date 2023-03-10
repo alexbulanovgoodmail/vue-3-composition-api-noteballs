@@ -1,9 +1,17 @@
 <script setup>
+import { computed } from 'vue'
+
 const props = defineProps({
   note: {
     type: Object,
     required: true
   }
+})
+
+const characterLength = computed(() => {
+  let length = props.note.content.length
+  let description = length > 1 ? 'characters' : 'character'
+  return `${length} ${description}`
 })
 </script>
 
@@ -12,6 +20,9 @@ const props = defineProps({
     <div class="card-content">
       <div class="content">
         {{ note.content }}
+        <div class="mt-2 has-text-right has-text-grey-light">
+          <small>{{ characterLength }}</small>
+        </div>
       </div>
     </div>
     <footer class="card-footer">
