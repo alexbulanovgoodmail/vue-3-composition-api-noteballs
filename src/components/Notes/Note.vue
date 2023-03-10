@@ -1,4 +1,11 @@
-<script setup></script>
+<script setup>
+const props = defineProps({
+  note: {
+    type: Object,
+    required: true
+  }
+})
+</script>
 
 <template>
   <div class="card mb-4">
