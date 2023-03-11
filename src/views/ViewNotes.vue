@@ -19,7 +19,7 @@ function addNote() {
 
 <template>
   <div class="notes">
-    <AddEditNote ref="addEditNoteRef" v-model="newNote">
+    <AddEditNote ref="addEditNoteRef" v-model="newNote" placeholder="Add a new note">
       <template v-slot:buttons>
         <button class="button is-link has-background-success" :disabled="!newNote" @click="addNote">
           Add New Note
