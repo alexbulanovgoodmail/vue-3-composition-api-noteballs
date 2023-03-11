@@ -13,10 +13,6 @@ function addNote() {
   newNote.value = ''
   newNoteRef.value.focus()
 }
-
-function deleteNote(idToDelete) {
-  notes.value = notes.value.filter((note) => note.id !== idToDelete)
-}
 </script>
 
 <template>
@@ -46,12 +42,7 @@ function deleteNote(idToDelete) {
       </div>
     </div>
 
-    <Note
-      v-for="note in storeNotes.notes"
-      :key="note.id"
-      :note="note"
-      @deleteClicked="deleteNote"
-    />
+    <Note v-for="note in storeNotes.notes" :key="note.id" :note="note" />
   </div>
 </template>
 
