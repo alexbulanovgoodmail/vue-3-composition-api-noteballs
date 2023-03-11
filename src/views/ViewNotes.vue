@@ -19,13 +19,14 @@ function addNote() {
 
 <template>
   <div class="notes">
-    <AddEditNote>
+    <AddEditNote v-model="newNote">
       <template v-slot:buttons>
         <button class="button is-link has-background-success" :disabled="!newNote" @click="addNote">
           Add New Note
         </button>
       </template>
     </AddEditNote>
+
     <!-- <div class="card has-background-success-dark mb-5 p-4">
       <div class="field">
         <div class="control">
