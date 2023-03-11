@@ -17,8 +17,16 @@ export const useStoreNotes = defineStore('storeNotes', {
     }
   },
   actions: {
-    addNote() {
-      console.log('add')
+    addNote(newNoteContent) {
+      let currentNew = new Date().getTime()
+      let id = currentNew.toString()
+
+      let note = {
+        id,
+        content: newNoteContent
+      }
+
+      this.notes.unshift(note)
     },
     deleteNote() {
       console.log('remove')
