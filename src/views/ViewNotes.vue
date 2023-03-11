@@ -1,7 +1,9 @@
 <script setup>
 import { ref } from 'vue'
 import { useStoreNotes } from '@/stores/storeNotes'
+
 import Note from '@/components/Notes/Note.vue'
+import AddEditNote from '@/components/Notes/AddEditNote.vue'
 
 const newNote = ref('')
 const newNoteRef = ref(null)
@@ -17,7 +19,14 @@ function addNote() {
 
 <template>
   <div class="notes">
-    <div class="card has-background-success-dark mb-5 p-4">
+    <AddEditNote>
+      <template v-slot:buttons>
+        <button class="button is-link has-background-success" :disabled="!newNote" @click="addNote">
+          Add New Note
+        </button>
+      </template>
+    </AddEditNote>
+    <!-- <div class="card has-background-success-dark mb-5 p-4">
       <div class="field">
         <div class="control">
           <textarea
@@ -40,7 +49,7 @@ function addNote() {
           </button>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <Note v-for="note in storeNotes.notes" :key="note.id" :note="note" />
   </div>
