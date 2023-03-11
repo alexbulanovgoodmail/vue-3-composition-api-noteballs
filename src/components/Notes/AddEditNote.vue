@@ -1,4 +1,8 @@
 <script setup>
+import { ref } from 'vue'
+
+const textareaRef = ref(null)
+
 const props = defineProps({
   modelValue: {
     type: String,
@@ -7,6 +11,14 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['update:modelValue'])
+
+function focusTextArea() {
+  textareaRef.value.focus()
+}
+
+defineExpose({
+  focusTextArea
+})
 </script>
 
 <template>
@@ -14,7 +26,7 @@ const emit = defineEmits(['update:modelValue'])
     <div class="field">
       <div class="control">
         <textarea
-          ref="newNoteRef"
+          ref="textareaRef"
           :value="modelValue"
           class="textarea"
           placeholder="Add new note"
