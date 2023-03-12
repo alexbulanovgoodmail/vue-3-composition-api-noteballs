@@ -13,6 +13,10 @@ const noteContent = ref('')
 const storeNotes = useStoreNotes()
 
 noteContent.value = storeNotes.getNoteContent(route.params.id)
+
+function handleSaceClicked() {
+  storeNotes.updateNote(route.params.id, noteContent.value)
+}
 </script>
 
 <template>
@@ -25,8 +29,12 @@ noteContent.value = storeNotes.getNoteContent(route.params.id)
       placeholder="Edit note"
     >
       <template v-slot:buttons>
-        <button class="button is-link is-light" @click="$router.back()">Cancel</button>
-        <button class="button is-link has-background-link" :disabled="!noteContent">
+        <button class="button is-link is-light mr-2" @click="$router.back()">Cancel</button>
+        <button
+          class="button is-link has-background-link"
+          :disabled="!noteContent"
+          @click="handleSaceClicked"
+        >
           Save Note
         </button>
       </template>
