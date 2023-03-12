@@ -44,6 +44,7 @@ defineExpose({
           :value="modelValue"
           class="textarea"
           :placeholder="placeholder"
+          maxlength="100"
           @input="$emit('update:modelValue', $event.target.value)"
         ></textarea>
       </div>
