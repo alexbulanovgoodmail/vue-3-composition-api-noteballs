@@ -30,6 +30,11 @@ function focusTextArea() {
 defineExpose({
   focusTextArea
 })
+
+// directives
+const vAutofocus = {
+  mounted: (el) => el.focus()
+}
 </script>
 
 <template>
@@ -39,6 +44,7 @@ defineExpose({
       <div class="control">
         <textarea
           ref="textareaRef"
+          v-autofocus
           :value="modelValue"
           class="textarea"
           :placeholder="placeholder"
