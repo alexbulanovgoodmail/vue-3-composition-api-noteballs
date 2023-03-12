@@ -1,12 +1,13 @@
 <script setup>
 import { ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 import AddEditNote from '@/components/Notes/AddEditNote.vue'
 
 import { useStoreNotes } from '@/stores/storeNotes'
 
 const route = useRoute()
+const router = useRouter()
 
 const noteContent = ref('')
 
@@ -16,6 +17,7 @@ noteContent.value = storeNotes.getNoteContent(route.params.id)
 
 function handleSaceClicked() {
   storeNotes.updateNote(route.params.id, noteContent.value)
+  router.back()
 }
 </script>
 
