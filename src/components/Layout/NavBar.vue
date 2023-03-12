@@ -33,8 +33,22 @@ const showMobileNav = ref(false)
 
       <div id="navbarBasicExample" class="navbar-menu" :class="{ 'is-active': showMobileNav }">
         <div class="navbar-end">
-          <RouterLink class="navbar-item" active-class="is-active" to="/"> Notes </RouterLink>
-          <RouterLink class="navbar-item" active-class="is-active" to="/stats"> Stats </RouterLink>
+          <RouterLink
+            class="navbar-item"
+            active-class="is-active"
+            to="/"
+            @click="showMobileNav = false"
+          >
+            Notes
+          </RouterLink>
+          <RouterLink
+            class="navbar-item"
+            active-class="is-active"
+            to="/stats"
+            @click="showMobileNav = false"
+          >
+            Stats
+          </RouterLink>
         </div>
       </div>
     </div>

@@ -1,69 +1,33 @@
 <script setup>
 import { ref } from 'vue'
+import { useStoreNotes } from '@/stores/storeNotes'
+
 import Note from '@/components/Notes/Note.vue'
+import AddEditNote from '@/components/Notes/AddEditNote.vue'
 
 const newNote = ref('')
-const newNoteRef = ref(null)
+const addEditNoteRef = ref(null)
 
-const notes = ref([
-  {
-    id: 'id1',
-    content:
-      'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore ex laboriosam incidunt quo consequuntur quibusdam nisi sit officia dignissimos nulla illum quaerat, maiores corrupti a veritatis quisquam rerum harum consectetur!'
-  },
-  {
-    id: 'id2',
-    content: 'This is a shorter note! Woo!'
-  }
-])
+const storeNotes = useStoreNotes()
 
 function addNote() {
-  let currentNew = new Date().getTime()
-  let id = currentNew.toString()
-
-  let note = {
-    id,
-    content: newNote.value
-  }
-
-  notes.value.unshift(note)
+  storeNotes.addNote(newNote.value)
   newNote.value = ''
-  newNoteRef.value.focus()
-}
-
-function deleteNote(idToDelete) {
-  notes.value = notes.value.filter((note) => note.id !== idToDelete)
+  addEditNoteRef.value.focusTextArea()
 }
 </script>
 
 <template>
   <div class="notes">
-    <div class="card has-background-success-dark mb-5 p-4">
-      <div class="field">
-        <div class="control">
-          <textarea
-            ref="newNoteRef"
-            v-model="newNote"
-            class="textarea"
-            placeholder="Add new note"
-          ></textarea>
-        </div>
-      </div>
+    <AddEditNote ref="addEditNoteRef" v-model="newNote" placeholder="Add a new note">
+      <template v-slot:buttons>
+        <button class="button is-link has-background-success" :disabled="!newNote" @click="addNote">
+          Add New Note
+        </button>
+      </template>
+    </AddEditNote>
 
-      <div class="field is-grouped is-grouped-right">
-        <div class="control">
-          <button
-            class="button is-link has-background-success"
-            :disabled="!newNote"
-            @click="addNote"
-          >
-            Add New Note
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <Note v-for="note in notes" :key="note.id" :note="note" @deleteClicked="deleteNote" />
+    <Note v-for="note in storeNotes.notes" :key="note.id" :note="note" />
   </div>
 </template>
 
