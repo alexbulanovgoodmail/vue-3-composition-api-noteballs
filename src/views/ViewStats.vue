@@ -11,7 +11,7 @@ const loveNoteballs = ref('')
 const storeNotes = useStoreNotes()
 
 // watch
-useWatchCharacters(loveNoteballs)
+useWatchCharacters(loveNoteballs, 10)
 </script>
 
 <template>
@@ -39,7 +39,7 @@ useWatchCharacters(loveNoteballs)
       v-autofocus
       class="input"
       type="text"
-      maxlength="100"
+      maxlength="10"
       placeholder="Do you love noteballs?"
     />
   </div>
