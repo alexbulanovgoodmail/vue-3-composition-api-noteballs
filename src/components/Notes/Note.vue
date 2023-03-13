@@ -47,7 +47,7 @@ const modals = reactive({
       <RouterLink :to="`/editNote/${note.id}`" class="card-footer-item">Edit</RouterLink>
       <a href="#" class="card-footer-item" @click.prevent="handleDeleteClicked">Delete</a>
     </footer>
-    <ModalDeleteNote v-if="modals.deleteNote" />
+    <ModalDeleteNote v-if="modals.deleteNote" v-model="modals.deleteNote" />
   </div>
 </template>
 
