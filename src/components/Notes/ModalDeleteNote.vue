@@ -2,19 +2,30 @@
 import { onMounted, onUnmounted, ref } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 
+import { useStoreNotes } from '@/stores/storeNotes'
+
 const props = defineProps({
   modelValue: {
     type: Boolean,
     default: false
+  },
+  noteId: {
+    type: String,
+    required: true
   }
 })
 
 const modalCardRef = ref(null)
+/*
+  store
+*/
+const storeNotes = useStoreNotes()
 
 /*
   emits
 */
 const emit = defineEmits(['update:modelValue'])
+
 /*
   close modal
 */
@@ -37,6 +48,13 @@ onMounted(() => {
 onUnmounted(() => {
   document.removeEventListener('keyup', handleKeyboard)
 })
+
+/*
+  delete
+*/
+function handleDeleteClicked() {
+  storeNotes.deleteNote(props.noteId)
+}
 </script>
 
 <template>
@@ -53,7 +71,7 @@ onUnmounted(() => {
       </section>
       <footer class="modal-card-foot is-justify-content-flex-end">
         <button class="button" @click="closeModal">Cancel</button>
-        <button class="button is-danger">Delete</button>
+        <button class="button is-danger" @click="handleDeleteClicked">Delete</button>
       </footer>
     </div>
   </div>

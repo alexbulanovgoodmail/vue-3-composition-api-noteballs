@@ -20,7 +20,6 @@ const characterLength = computed(() => {
 })
 
 function handleDeleteClicked() {
-  // storeNotes.deleteNote(props.note.id)
   modals.deleteNote = true
 }
 
@@ -47,7 +46,7 @@ const modals = reactive({
       <RouterLink :to="`/editNote/${note.id}`" class="card-footer-item">Edit</RouterLink>
       <a href="#" class="card-footer-item" @click.prevent="handleDeleteClicked">Delete</a>
     </footer>
-    <ModalDeleteNote v-if="modals.deleteNote" v-model="modals.deleteNote" />
+    <ModalDeleteNote v-if="modals.deleteNote" v-model="modals.deleteNote" :noteId="note.id" />
   </div>
 </template>
 
