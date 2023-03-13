@@ -5,6 +5,8 @@ import { useStoreNotes } from '@/stores/storeNotes'
 import Note from '@/components/Notes/Note.vue'
 import AddEditNote from '@/components/Notes/AddEditNote.vue'
 
+import { useWatchCharacters } from '@/use/useWatchCharacters'
+
 const newNote = ref('')
 const addEditNoteRef = ref(null)
 
@@ -15,6 +17,8 @@ function addNote() {
   newNote.value = ''
   addEditNoteRef.value.focusTextArea()
 }
+// watch
+useWatchCharacters(newNote)
 </script>
 
 <template>
