@@ -3,11 +3,23 @@
   imports
 */
 import { ref } from 'vue'
+import { onClickOutside } from '@vueuse/core'
 
 /*
   mobile nav
 */
 const showMobileNav = ref(false)
+
+/*
+
+*/
+
+const navbarMenuRef = ref(null)
+const navbarBurgerRef = ref(null)
+
+onClickOutside(navbarMenuRef, (evet) => (showMobileNav.value = false), {
+  ignore: [navbarBurgerRef]
+})
 </script>
 
 <template>
@@ -17,6 +29,7 @@ const showMobileNav = ref(false)
         <div class="navbar-item is-size-4 is-family-monospace">Noteballs</div>
 
         <a
+          ref="navbarBurgerRef"
           role="button"
           class="navbar-burger"
           :class="{ 'is-active': showMobileNav }"
@@ -31,7 +44,12 @@ const showMobileNav = ref(false)
         </a>
       </div>
 
-      <div id="navbarBasicExample" class="navbar-menu" :class="{ 'is-active': showMobileNav }">
+      <div
+        ref="navbarMenuRef"
+        id="navbarBasicExample"
+        class="navbar-menu"
+        :class="{ 'is-active': showMobileNav }"
+      >
         <div class="navbar-end">
           <RouterLink
             class="navbar-item"
